@@ -6,3 +6,10 @@ stages:
     - src/train_test_split.py
     outs:
     - dataset/split
+  modelBuilder:
+    cmd: python src/knn.py -i dataset/split -o models
+    deps:
+    - dataset/split
+    - src/knn.py
+    outs:
+    - models

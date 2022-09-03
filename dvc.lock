@@ -29,3 +29,17 @@ stages:
       md5: 924df51eaa6d7a6852b3665c57a4fac7.dir
       size: 130096
       nfiles: 2
+  Evaluator:
+    cmd: python src/evaluate.py -i dataset/split -m models
+    deps:
+    - path: dataset/split
+      md5: 6bcb00890a5be4fd0616b564d8109bed.dir
+      size: 135518
+      nfiles: 4
+    - path: models
+      md5: 924df51eaa6d7a6852b3665c57a4fac7.dir
+      size: 130096
+      nfiles: 2
+    - path: src/evaluate.py
+      md5: 7313968677813b312072dccc53313dc5
+      size: 776

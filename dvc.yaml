@@ -13,3 +13,9 @@ stages:
     - src/knn.py
     outs:
     - models
+  Evaluator:
+    cmd: python src/evaluate.py -i dataset/split -m models
+    deps:
+    - dataset/split
+    - src/evaluate.py
+    - models

@@ -1,2 +1,4 @@
 ['remote "local"']
     url = ../tmp/dvc_session
+['remote "aws_remote"']
+    url = s3://ml-ops-crops

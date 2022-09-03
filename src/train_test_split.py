@@ -14,6 +14,10 @@ import plac
 
 from sklearn.model_selection import train_test_split
 
+@plac.annotations(
+    data_path =("Path to source data" , "option" , "i" , str),
+    out_path=("Path to save split data" , "option" , "o" , str)
+)
 
 def main(data_path='../dataset/Crop_recommendation.csv' , out_path='../dataset/split'):
     df=pd.read_csv(data_path)

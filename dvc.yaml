@@ -1,4 +1,11 @@
 stages:
+  Exploratory_Data_Analysis:
+    cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
+    deps:
+    - dataset/Crop_recommendation.csv
+    - src/EDA.py
+    outs:
+    - charts
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split
     deps:

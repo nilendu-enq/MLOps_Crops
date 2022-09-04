@@ -1,26 +1,29 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
-import pickle
 import plac
 import os
 
+def save_charts(chart, chart_name ,path):
+    fig = chart.get_figure()   
+    fig.savefig(f"{path}/{chart_name}.png")
+   
 @plac.annotations(
     data_path =("Path to source data" , "option" , "i" , str),
-    image_path=("Path to save split data" , "option" , "o" , str)
+    charts_path=("Path to save split data" , "option" , "o" , str)
 )
 
+def main(data_path='../dataset/Crop_recommendation.csv' , charts_path='charts'):
+    if not os.path.isdir(charts_path):
+        os.mkdir(charts_path)
+    
+    df=pd.read_csv(data_path)
+    heatmap = sns.heatmap(df.isnull(),cmap="coolwarm")
+    save_charts(heatmap,"heatmap",charts_path)
 
-def main(data_path='../dataset/split' , model_path='models'):
-    df_X_test=pd.read_csv(f'{data_path}/X_test.csv')
-    df_y_test=pd.read_csv(f'{data_path}/y_test.csv')
-    y_test = df_y_test['target'].squeeze(0)
-    loaded_scaler = pickle.load(open(model_path+"/scaler.sav", 'rb'))
-    X_test_scaled = loaded_scaler.transform(df_X_test)
 
-    loaded_model = pickle.load(open(model_path+"/knn.sav", 'rb'))
-    result = loaded_model.score(X_test_scaled , y_test)
-
-    print(result)
-    print("\nModel evaluation sucessfull")
+    
+    print("\nEDA DATA SAVED")
 
 if __name__=='__main__':
     plac.call(main)

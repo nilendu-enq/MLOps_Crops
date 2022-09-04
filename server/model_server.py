@@ -37,7 +37,7 @@ def predict():
     for i in pred_list:
         result.append(y_label[i])
 
-    return json.dumps(result)
+    return json.dumps({"crop_prediction":result})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)

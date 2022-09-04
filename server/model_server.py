@@ -6,11 +6,11 @@ import json
 
 app = Flask(__name__)
 
-model_filename = 'knn.sav'
-scaler_filename = 'scaler.sav'
+model_filename = 'models/knn.sav'
+scaler_filename = 'models/scaler.sav'
 
 loaded_scaler = pickle.load(open(scaler_filename, 'rb')) 
-loaded_model = pickle.load(open(filename, 'rb'))
+loaded_model = pickle.load(open(model_filename, 'rb'))
 
 @app.route('/', methods=['GET'])
 def home():
@@ -26,9 +26,11 @@ def health_check():
 def predict():
   
     data = request.json
+    print(request.json)
     X = pd.DataFrame(data)
     print(X)
-    result = loaded_model.predict(X)
+    X_scaled = loaded_scaler.transform(X)
+    result = loaded_model.predict(X_scaled)
     
     return json.dumps(result.tolist())
 

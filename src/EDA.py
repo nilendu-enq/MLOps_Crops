@@ -5,7 +5,7 @@ import os
 
 @plac.annotations(
     data_path =("Path to source data" , "option" , "i" , str),
-    model_path=("Path to saved model" , "option" , "m" , str)
+    image_path=("Path to save split data" , "option" , "o" , str)
 )
 
 

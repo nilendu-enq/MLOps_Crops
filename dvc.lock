@@ -7,20 +7,20 @@ stages:
       md5: fa83739710074b21a20b156034538279
       size: 150034
     - path: src/train_test_split.py
-      md5: 54ea67bc2040dcf8dd3cbb7289959502
-      size: 1163
+      md5: c2b43f0e45c0d99be39b5d50820e8208
+      size: 1369
     outs:
     - path: dataset/split
-      md5: 6bcb00890a5be4fd0616b564d8109bed.dir
-      size: 135518
-      nfiles: 4
+      md5: ce9df00dae4c3f96f92927dfc393004d.dir
+      size: 135699
+      nfiles: 5
   modelBuilder:
     cmd: python src/knn.py -i dataset/split -o models
     deps:
     - path: dataset/split
-      md5: 6bcb00890a5be4fd0616b564d8109bed.dir
-      size: 135518
-      nfiles: 4
+      md5: ce9df00dae4c3f96f92927dfc393004d.dir
+      size: 135699
+      nfiles: 5
     - path: src/knn.py
       md5: 850934b048ac114de6fed5c249c397ec
       size: 953
@@ -33,9 +33,9 @@ stages:
     cmd: python src/evaluate.py -i dataset/split -m models
     deps:
     - path: dataset/split
-      md5: 6bcb00890a5be4fd0616b564d8109bed.dir
-      size: 135518
-      nfiles: 4
+      md5: ce9df00dae4c3f96f92927dfc393004d.dir
+      size: 135699
+      nfiles: 5
     - path: models
       md5: 924df51eaa6d7a6852b3665c57a4fac7.dir
       size: 130096

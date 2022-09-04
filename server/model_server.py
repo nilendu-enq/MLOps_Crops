@@ -8,9 +8,12 @@ app = Flask(__name__)
 
 model_filename = 'models/knn.sav'
 scaler_filename = 'models/scaler.sav'
+y_label_filename = 'dataset/split/y_label.csv'
 
 loaded_scaler = pickle.load(open(scaler_filename, 'rb')) 
 loaded_model = pickle.load(open(model_filename, 'rb'))
+
+y_label=pd.read_csv(y_label_filename).to_dict()['0']
 
 @app.route('/', methods=['GET'])
 def home():
@@ -26,13 +29,15 @@ def health_check():
 def predict():
   
     data = request.json
-    print(request.json)
     X = pd.DataFrame(data)
-    print(X)
     X_scaled = loaded_scaler.transform(X)
-    result = loaded_model.predict(X_scaled)
-    
-    return json.dumps(result.tolist())
+    pred = loaded_model.predict(X_scaled)
+    pred_list=pred.tolist()
+    result = []
+    for i in pred_list:
+        result.append(y_label[i])
+
+    return json.dumps(result)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)

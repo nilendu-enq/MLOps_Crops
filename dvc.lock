@@ -7,12 +7,12 @@ stages:
       md5: fa83739710074b21a20b156034538279
       size: 150034
     - path: src/EDA.py
-      md5: 5d6cbf8d70203fa12be8f65a71b0b0b8
-      size: 2367
+      md5: 9ed0c39b5d810ae2b04e362f21d04377
+      size: 2372
     outs:
     - path: charts
-      md5: f59efb07a3e8520015391890c87aa737.dir
-      size: 2537419
+      md5: fe211d9828824af66d9338779c68478a.dir
+      size: 2537534
       nfiles: 11
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split

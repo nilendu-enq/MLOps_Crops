@@ -52,6 +52,7 @@ def main(data_path='../dataset/Crop_recommendation.csv' , charts_path='charts'):
     X=df[['N','P','K','temperature','humidity','ph','rainfall']]
     heatmap_corelation=sns.heatmap(X.corr())
     save_charts(heatmap_corelation,"heatmap_corelation",charts_path)
+    
 
 
     

@@ -1,4 +1,10 @@
 stages:
+  Get_Remote_data:
+    cmd: python src/get_data.py -o dataset/Crop_recommendation.csv
+    outs:
+    - dataset/Crop_recommendation.csv
+    deps:
+    - src/get_data.py
   Exploratory_Data_Analysis:
     cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
     deps:

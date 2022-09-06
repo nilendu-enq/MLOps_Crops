@@ -10,7 +10,7 @@ import plac
     out_path=("Path to save split data" , "option" , "o" , str)
 )
 
-def main(data_path='Crop_input_data2.csv' , out_path='dataset/Crop_recommendation.csv'):
+def main(data_path='crop_input_data2.csv' , out_path='dataset/Crop_recommendation.csv'):
     ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
     SECRET_KEY = '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'
     

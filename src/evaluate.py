@@ -16,7 +16,7 @@ def main(data_path='../dataset/split' , model_path='models'):
     loaded_scaler = pickle.load(open(model_path+"/scaler.sav", 'rb'))
     X_test_scaled = loaded_scaler.transform(df_X_test)
 
-    loaded_model = pickle.load(open(model_path+"/svc.sav", 'rb'))
+    loaded_model = pickle.load(open(model_path+"/model.sav", 'rb'))
     result = loaded_model.score(X_test_scaled , y_test)
 
     print(result)

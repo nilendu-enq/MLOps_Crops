@@ -19,10 +19,10 @@ stages:
     outs:
     - dataset/split
   modelBuilder:
-    cmd: python src/svc.py -i dataset/split -o models
+    cmd: python src/model.py -i dataset/split -o models
     deps:
     - dataset/split
-    - src/svc.py
+    - src/model.py
     outs:
     - models
   Evaluator:

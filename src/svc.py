@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 import pickle
 import plac
 import os
@@ -23,10 +23,10 @@ def main(data_path='../dataset/split' , out_path='models'):
 
     pickle.dump(scaler, open(f'{out_path}/scaler.sav', 'wb'))
 
-    knn = KNeighborsClassifier()
-    knn.fit(X_train_scaled, y_train)
+    svc_linear = SVC(kernel = 'linear')
+    svc_linear.fit(X_train_scaled, y_train)
 
-    pickle.dump(knn, open(f'{out_path}/svc.sav', 'wb'))
+    pickle.dump(svc_linear, open(f'{out_path}/svc.sav', 'wb'))
 
     print("Model building finished sucessfully")
 

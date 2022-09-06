@@ -31,12 +31,12 @@ stages:
       size: 135703
       nfiles: 5
     - path: src/svc.py
-      md5: 8ec9c4cc8c1a560cff3706d4987d7971
-      size: 953
+      md5: 6a2b1d55d47574f5d7d09abd1e57b9ee
+      size: 951
     outs:
     - path: models
-      md5: 8323c3247e052360556341e22f160180.dir
-      size: 130096
+      md5: 5c523f619b5b6369da8575317f566a5e.dir
+      size: 308772
       nfiles: 2
   Evaluator:
     cmd: python src/evaluate.py -i dataset/split -m models
@@ -46,8 +46,8 @@ stages:
       size: 135703
       nfiles: 5
     - path: models
-      md5: 8323c3247e052360556341e22f160180.dir
-      size: 130096
+      md5: 5c523f619b5b6369da8575317f566a5e.dir
+      size: 308772
       nfiles: 2
     - path: src/evaluate.py
       md5: a56629b680ba2d4041449283205571ba

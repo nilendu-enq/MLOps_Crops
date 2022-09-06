@@ -15,6 +15,9 @@ stages:
     - path: dataset/Crop_recommendation.csv
       md5: e56d68e86bfe1bc38136f1927b0741d7
       size: 150434
+    - path: src/get_data.py
+      md5: 93dea55d35e62c0e6436bc1d2133206c
+      size: 676
     - path: src/train_test_split.py
       md5: c2b43f0e45c0d99be39b5d50820e8208
       size: 1369
@@ -61,8 +64,11 @@ stages:
     - path: src/EDA.py
       md5: 9ed0c39b5d810ae2b04e362f21d04377
       size: 2372
+    - path: src/get_data.py
+      md5: 93dea55d35e62c0e6436bc1d2133206c
+      size: 676
     outs:
     - path: charts
-      md5: e60966940b61df1f9141a975f5b8c465.dir
-      size: 2540364
+      md5: 4fe2fbc80f8c157baf6b6a2c9432b4b7.dir
+      size: 2540386
       nfiles: 11

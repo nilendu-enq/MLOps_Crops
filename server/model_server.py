@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-model_filename = 'models/knn.sav'
+model_filename = 'models/svc.sav'
 scaler_filename = 'models/scaler.sav'
 y_label_filename = 'dataset/split/y_label.csv'
 

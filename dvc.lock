@@ -24,19 +24,19 @@ stages:
       size: 135703
       nfiles: 5
   modelBuilder:
-    cmd: python src/svc.py -i dataset/split -o models
+    cmd: python src/model.py -i dataset/split -o models
     deps:
     - path: dataset/split
       md5: c8ace968e1fc7b744819c785b7f9a76a.dir
       size: 135703
       nfiles: 5
-    - path: src/svc.py
-      md5: 1477b923e7514bb7ca942cbf9d16fc96
-      size: 1066
+    - path: src/model.py
+      md5: 6e986ffc8c2826a51902dd09408c7c8f
+      size: 957
     outs:
     - path: models
-      md5: 8323c3247e052360556341e22f160180.dir
-      size: 130096
+      md5: 27d3ba349e8153bc757cf4dd8dd19de4.dir
+      size: 308772
       nfiles: 2
   Evaluator:
     cmd: python src/evaluate.py -i dataset/split -m models
@@ -46,12 +46,12 @@ stages:
       size: 135703
       nfiles: 5
     - path: models
-      md5: 8323c3247e052360556341e22f160180.dir
-      size: 130096
+      md5: 27d3ba349e8153bc757cf4dd8dd19de4.dir
+      size: 308772
       nfiles: 2
     - path: src/evaluate.py
-      md5: a56629b680ba2d4041449283205571ba
-      size: 772
+      md5: 6d2a0271ac00ca746d263d2940a3365b
+      size: 774
   Exploratory_Data_Analysis:
     cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
     deps:

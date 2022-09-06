@@ -26,7 +26,7 @@ def main(data_path='../dataset/split' , out_path='models'):
     knn = KNeighborsClassifier()
     knn.fit(X_train_scaled, y_train)
 
-    pickle.dump(knn, open(f'{out_path}/knn.sav', 'wb'))
+    pickle.dump(knn, open(f'{out_path}/svc.sav', 'wb'))
 
     print("Model building finished sucessfully")
 

@@ -19,10 +19,10 @@ stages:
     outs:
     - dataset/split
   modelBuilder:
-    cmd: python src/knn.py -i dataset/split -o models
+    cmd: python src/svc.py -i dataset/split -o models
     deps:
     - dataset/split
-    - src/knn.py
+    - src/svc.py
     outs:
     - models
   Evaluator:

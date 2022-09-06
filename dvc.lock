@@ -1,5 +1,15 @@
 schema: '2.0'
 stages:
+  Pull_Data:
+    cmd: python src/get_data.py -o dataset
+    deps:
+    - path: src/get_data.py
+      md5: a99a7986118b7a144909d7dc9e430eeb
+      size: 614
+    outs:
+    - path: dataset/Crop_recommendation.csv
+      md5: 87b3e90ba0a87d06348511cf28a416b9
+      size: 147905
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split
     deps:
@@ -7,8 +17,8 @@ stages:
       md5: 87b3e90ba0a87d06348511cf28a416b9
       size: 147905
     - path: src/get_data.py
-      md5: 3045d9fa26c54d871d2bb0f131d92545
-      size: 675
+      md5: a99a7986118b7a144909d7dc9e430eeb
+      size: 614
     - path: src/train_test_split.py
       md5: c2b43f0e45c0d99be39b5d50820e8208
       size: 1369
@@ -56,16 +66,10 @@ stages:
       md5: 9ed0c39b5d810ae2b04e362f21d04377
       size: 2372
     - path: src/get_data.py
-      md5: 3045d9fa26c54d871d2bb0f131d92545
-      size: 675
+      md5: a99a7986118b7a144909d7dc9e430eeb
+      size: 614
     outs:
     - path: charts
-      md5: de015669cefae190c7031d44609e5acc.dir
-      size: 2194056
+      md5: 4dd819e7c5329af28227371ceb80b613.dir
+      size: 2193750
       nfiles: 11
-  Pull_Data:
-    cmd: python src/get_data.py
-    deps:
-    - path: src/get_data.py
-      md5: 3045d9fa26c54d871d2bb0f131d92545
-      size: 675

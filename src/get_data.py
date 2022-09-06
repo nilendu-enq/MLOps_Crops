@@ -6,11 +6,11 @@ import plac
 
 
 @plac.annotations(
-    data_path =("Path to source data" , "option" , "i" , str),
     out_path=("Path to save split data" , "option" , "o" , str)
 )
 
-def main(data_path='crop_input_data.csv' , out_path='dataset'):
+def main(out_path='dataset'):
+    data_path='crop_input_data.csv'
     ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
     SECRET_KEY = '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'
     

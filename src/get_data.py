@@ -11,7 +11,7 @@ def main(data_path='crop_input_data.csv' , out_path='dataset/Crop_recommendation
     
 
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY , aws_secret_access_key=SECRET_KEY)
-    s3.download_file('enq-dataops-pipeline-artifacts', 'crop_input_data.csv', 'dataset/Crop_recommendation.csv')
+    s3.download_file('enq-dataops-pipeline-artifacts', 'Crop_input_data2.csv', 'dataset/Crop_recommendation.csv')
 
     print("Data fetch from S3 sucessfull")
 

@@ -3,17 +3,16 @@ from flask import Flask, send_file, make_response,jsonify, request
 import pickle
 import pandas as pd
 import json
+import boto3
+
+ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
+SECRET_KEY = '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'
 
 app = Flask(__name__)
 
-model_filename = 'models/knn.sav'
-scaler_filename = 'models/scaler.sav'
-y_label_filename = 'dataset/split/y_label.csv'
-
-loaded_scaler = pickle.load(open(scaler_filename, 'rb')) 
-loaded_model = pickle.load(open(model_filename, 'rb'))
-
-y_label=pd.read_csv(y_label_filename).to_dict()['0']
+model_filename = 'knn.sav'
+scaler_filename = 'scaler.sav'
+y_label_filename = 'y_label.csv'
 
 @app.route('/', methods=['GET'])
 def home():
@@ -27,7 +26,17 @@ def health_check():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-  
+
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY , aws_secret_access_key=SECRET_KEY)
+    s3.download_file('enq-dataops-pipeline-artifacts', model_filename, model_filename)
+    s3.download_file('enq-dataops-pipeline-artifacts', scaler_filename, scaler_filename)
+    s3.download_file('enq-dataops-pipeline-artifacts', y_label_filename, y_label_filename)
+    
+    loaded_model = pickle.load(open(model_filename, 'rb'))
+    loaded_scaler = pickle.load(open(scaler_filename, 'rb')) 
+
+    y_label=pd.read_csv(y_label_filename).to_dict()['0']
+
     data = request.json
     X = pd.DataFrame(data)
     X_scaled = loaded_scaler.transform(X)

@@ -10,6 +10,7 @@ import os
 import numpy as np
 import pandas as pd
 import plac
+import boto3
 
 from sklearn.model_selection import train_test_split
 
@@ -41,6 +42,13 @@ def main(data_path='../dataset/Crop_recommendation.csv' , out_path='../dataset/s
     X_test.to_csv(f'{out_path}/X_test.csv' , index=False)
     y_train.to_csv(f'{out_path}/y_train.csv' , index=False)
     y_test.to_csv(f'{out_path}/y_test.csv' , index=False)
+
+    ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
+    SECRET_KEY = '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'
+    
+
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY , aws_secret_access_key=SECRET_KEY)
+    s3.upload_file(f'{out_path}/y_label.csv' , 'enq-dataops-pipeline-artifacts', 'y_label.csv')
     print("Split data set finished sucessfully")
 
 if __name__=='__main__':

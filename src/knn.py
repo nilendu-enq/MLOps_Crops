@@ -4,6 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import pickle
 import plac
 import os
+import boto3
 
 @plac.annotations(
     data_path =("Path to source data" , "option" , "i" , str),
@@ -27,6 +28,14 @@ def main(data_path='../dataset/split' , out_path='models'):
     knn.fit(X_train_scaled, y_train)
 
     pickle.dump(knn, open(f'{out_path}/knn.sav', 'wb'))
+
+    ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
+    SECRET_KEY = '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'
+    
+
+    s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY , aws_secret_access_key=SECRET_KEY)
+    s3.upload_file(f'{out_path}/knn.sav' , 'enq-dataops-pipeline-artifacts', 'knn.sav')
+    s3.upload_file(f'{out_path}/scaler.sav' , 'enq-dataops-pipeline-artifacts', 'scaler.sav')
 
     print("Model building finished sucessfully")
 

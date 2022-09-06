@@ -16,8 +16,8 @@ stages:
       md5: e56d68e86bfe1bc38136f1927b0741d7
       size: 150434
     - path: src/train_test_split.py
-      md5: c2b43f0e45c0d99be39b5d50820e8208
-      size: 1369
+      md5: 5e5611cb1d54b3047308d0bb04bf3253
+      size: 1678
     outs:
     - path: dataset/split
       md5: c8ace968e1fc7b744819c785b7f9a76a.dir
@@ -31,8 +31,8 @@ stages:
       size: 135703
       nfiles: 5
     - path: src/knn.py
-      md5: 850934b048ac114de6fed5c249c397ec
-      size: 953
+      md5: 263308f19c0db4fe7b5edd50d9d3cba2
+      size: 1348
     outs:
     - path: models
       md5: 70915b7c3d6899059f53d0d2562f36af.dir

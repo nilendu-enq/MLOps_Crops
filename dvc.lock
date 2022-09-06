@@ -1,59 +1,68 @@
 schema: '2.0'
 stages:
-  Exploratory_Data_Analysis:
-    cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
+  Pull_Data:
+    cmd: python src/get_data.py
     deps:
     - path: dataset/Crop_recommendation.csv
-      md5: fa83739710074b21a20b156034538279
-      size: 150034
-    - path: src/EDA.py
-      md5: 9ed0c39b5d810ae2b04e362f21d04377
-      size: 2372
-    outs:
-    - path: charts
-      md5: fe211d9828824af66d9338779c68478a.dir
-      size: 2537534
-      nfiles: 11
+      md5: 87b3e90ba0a87d06348511cf28a416b9
+      size: 147905
+    - path: src/get_data.py
+      md5: 87792fd3e688de04dbdb0c1160647b47
+      size: 553
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split
     deps:
     - path: dataset/Crop_recommendation.csv
-      md5: fa83739710074b21a20b156034538279
-      size: 150034
+      md5: 3eff4493257da5f635fbc2f3db5d0f32
+      size: 147625
     - path: src/train_test_split.py
       md5: c2b43f0e45c0d99be39b5d50820e8208
       size: 1369
     outs:
     - path: dataset/split
-      md5: ce9df00dae4c3f96f92927dfc393004d.dir
-      size: 135699
+      md5: d1b1eec213a187e8a3465a0dc864fd89.dir
+      size: 135507
       nfiles: 5
   modelBuilder:
     cmd: python src/knn.py -i dataset/split -o models
     deps:
     - path: dataset/split
-      md5: ce9df00dae4c3f96f92927dfc393004d.dir
-      size: 135699
+      md5: d1b1eec213a187e8a3465a0dc864fd89.dir
+      size: 135507
       nfiles: 5
     - path: src/knn.py
       md5: 850934b048ac114de6fed5c249c397ec
       size: 953
     outs:
     - path: models
-      md5: 924df51eaa6d7a6852b3665c57a4fac7.dir
-      size: 130096
+      md5: 272a034f54652541df8b1b998aac7112.dir
+      size: 129880
       nfiles: 2
   Evaluator:
     cmd: python src/evaluate.py -i dataset/split -m models
     deps:
     - path: dataset/split
-      md5: ce9df00dae4c3f96f92927dfc393004d.dir
-      size: 135699
+      md5: d1b1eec213a187e8a3465a0dc864fd89.dir
+      size: 135507
       nfiles: 5
     - path: models
-      md5: 924df51eaa6d7a6852b3665c57a4fac7.dir
-      size: 130096
+      md5: 272a034f54652541df8b1b998aac7112.dir
+      size: 129880
       nfiles: 2
     - path: src/evaluate.py
       md5: 159adcc419fe7c97c48ac11f660f6e32
       size: 772
+  Exploratory_Data_Analysis:
+    cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
+    deps:
+    - path: dataset/Crop_recommendation.csv
+      md5: 87b3e90ba0a87d06348511cf28a416b9
+      size: 147905
+    - path: src/EDA.py
+      md5: 9ed0c39b5d810ae2b04e362f21d04377
+      size: 2372
+    outs:
+    - path: charts
+      md5: 368a88925c0c308f0c9b6e082e8a1576.dir
+      size: 2193606
+      nfiles: 11

@@ -1,4 +1,10 @@
 stages:
+  Pull_Data:
+    cmd: python src/get_data.py -o dataset
+    deps:
+    - src/get_data.py
+    outs:
+    - dataset/Crop_recommendation.csv
   Exploratory_Data_Analysis:
     cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
     deps:
@@ -14,10 +20,10 @@ stages:
     outs:
     - dataset/split
   modelBuilder:
-    cmd: python src/knn.py -i dataset/split -o models
+    cmd: python src/model.py -i dataset/split -o models
     deps:
     - dataset/split
-    - src/knn.py
+    - src/model.py
     outs:
     - models
   Evaluator:

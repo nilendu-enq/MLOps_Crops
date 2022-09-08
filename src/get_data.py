@@ -10,7 +10,7 @@ import plac
 )
 
 def main(out_path='dataset'):
-    data_path='crop_input_data.csv'
+    data_path='crop_input_data_final.csv'
     ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
     SECRET_KEY = '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'
     

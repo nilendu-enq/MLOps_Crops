@@ -4,51 +4,51 @@ stages:
     cmd: python src/get_data.py -o dataset
     deps:
     - path: src/get_data.py
-      md5: bef37950f3b36ab0f04d33c300066b68
-      size: 620
+      md5: a520f05e4cc70438e988dd0252490e48
+      size: 455
     outs:
     - path: dataset/Crop_recommendation.csv
-      md5: e1746405a3bf53a334f54a8bc150e3e0
-      size: 500700
+      md5: c4479b1c7e9eb031ea6eb2bd1069af32
+      size: 3438977
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split
     deps:
     - path: dataset/Crop_recommendation.csv
-      md5: e1746405a3bf53a334f54a8bc150e3e0
-      size: 500700
+      md5: c4479b1c7e9eb031ea6eb2bd1069af32
+      size: 3438977
     - path: src/train_test_split.py
       md5: c2b43f0e45c0d99be39b5d50820e8208
       size: 1369
     outs:
     - path: dataset/split
-      md5: 0b08a2fa168a0de77b05ea229c66f021.dir
-      size: 467750
+      md5: 788ecea23498645765bd2cf31e2e466c.dir
+      size: 3211809
       nfiles: 5
   modelBuilder:
     cmd: python src/model.py -i dataset/split -o models
     deps:
     - path: dataset/split
-      md5: 0b08a2fa168a0de77b05ea229c66f021.dir
-      size: 467750
+      md5: 788ecea23498645765bd2cf31e2e466c.dir
+      size: 3211809
       nfiles: 5
     - path: src/model.py
       md5: b9a08031bf26a4177537c208a86cf72c
       size: 959
     outs:
     - path: models
-      md5: 7499244c66d00fcf7663add204f4a7cf.dir
-      size: 338473
+      md5: b97806eb70d5faaffa090365509b345d.dir
+      size: 2207254
       nfiles: 2
   Evaluator:
     cmd: python src/evaluate.py -i dataset/split -m models
     deps:
     - path: dataset/split
-      md5: 0b08a2fa168a0de77b05ea229c66f021.dir
-      size: 467750
+      md5: 788ecea23498645765bd2cf31e2e466c.dir
+      size: 3211809
       nfiles: 5
     - path: models
-      md5: 7499244c66d00fcf7663add204f4a7cf.dir
-      size: 338473
+      md5: b97806eb70d5faaffa090365509b345d.dir
+      size: 2207254
       nfiles: 2
     - path: src/evaluate.py
       md5: 6d2a0271ac00ca746d263d2940a3365b
@@ -57,13 +57,13 @@ stages:
     cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
     deps:
     - path: dataset/Crop_recommendation.csv
-      md5: e1746405a3bf53a334f54a8bc150e3e0
-      size: 500700
+      md5: c4479b1c7e9eb031ea6eb2bd1069af32
+      size: 3438977
     - path: src/EDA.py
       md5: 9ed0c39b5d810ae2b04e362f21d04377
       size: 2372
     outs:
     - path: charts
-      md5: 3d0201dde65cc51c3651f411650744f0.dir
-      size: 2674560
+      md5: ace75c8eaa8de7a228162b87f7906d95.dir
+      size: 2855385
       nfiles: 11

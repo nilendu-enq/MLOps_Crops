@@ -8,47 +8,47 @@ stages:
       size: 455
     outs:
     - path: dataset/Crop_recommendation.csv
-      md5: c4479b1c7e9eb031ea6eb2bd1069af32
-      size: 3438977
+      md5: c492b14bc7bf618154267ef8e21b81a2
+      size: 6054805
   split:
     cmd: python src/train_test_split.py -i dataset/Crop_recommendation.csv -o dataset/split
     deps:
     - path: dataset/Crop_recommendation.csv
-      md5: c4479b1c7e9eb031ea6eb2bd1069af32
-      size: 3438977
+      md5: c492b14bc7bf618154267ef8e21b81a2
+      size: 6054805
     - path: src/train_test_split.py
       md5: c2b43f0e45c0d99be39b5d50820e8208
       size: 1369
     outs:
     - path: dataset/split
-      md5: 788ecea23498645765bd2cf31e2e466c.dir
-      size: 3211809
+      md5: c1f6d6a0b27d1ef44c004531aad702c8.dir
+      size: 5654863
       nfiles: 5
   modelBuilder:
     cmd: python src/model.py -i dataset/split -o models
     deps:
     - path: dataset/split
-      md5: 788ecea23498645765bd2cf31e2e466c.dir
-      size: 3211809
+      md5: c1f6d6a0b27d1ef44c004531aad702c8.dir
+      size: 5654863
       nfiles: 5
     - path: src/model.py
       md5: b9a08031bf26a4177537c208a86cf72c
       size: 959
     outs:
     - path: models
-      md5: b97806eb70d5faaffa090365509b345d.dir
-      size: 2207254
+      md5: f2f1a07a41b5f5a9e3689754cf3e0629.dir
+      size: 3919855
       nfiles: 2
   Evaluator:
     cmd: python src/evaluate.py -i dataset/split -m models
     deps:
     - path: dataset/split
-      md5: 788ecea23498645765bd2cf31e2e466c.dir
-      size: 3211809
+      md5: c1f6d6a0b27d1ef44c004531aad702c8.dir
+      size: 5654863
       nfiles: 5
     - path: models
-      md5: b97806eb70d5faaffa090365509b345d.dir
-      size: 2207254
+      md5: f2f1a07a41b5f5a9e3689754cf3e0629.dir
+      size: 3919855
       nfiles: 2
     - path: src/evaluate.py
       md5: 6d2a0271ac00ca746d263d2940a3365b

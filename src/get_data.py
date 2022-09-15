@@ -11,8 +11,8 @@ import plac
 
 def main(out_path='dataset'):
     data_path='crop_input_data.csv'
-    ACCESS_KEY = 'AKIAWATRK4TZJTQ4BA2I'
-    SECRET_KEY = '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'
+    ACCESS_KEY = 'XXXXX'
+    SECRET_KEY = 'XXXX'
     
 
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY , aws_secret_access_key=SECRET_KEY)

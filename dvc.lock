@@ -47,12 +47,12 @@ stages:
       size: 22440513
       nfiles: 5
     - path: models
-      md5: 63462750163bfd5419d1794919e4cf83.dir
-      size: 15559529
-      nfiles: 2
+      md5: fc6440bd9469466346244c6dfa9269b5.dir
+      size: 15559645
+      nfiles: 3
     - path: src/evaluate.py
-      md5: 6d2a0271ac00ca746d263d2940a3365b
-      size: 774
+      md5: 724a6609907b5bdaf428d0251d4875a4
+      size: 837
   Exploratory_Data_Analysis:
     cmd: python src/EDA.py -i dataset/Crop_recommendation.csv -o charts
     deps:

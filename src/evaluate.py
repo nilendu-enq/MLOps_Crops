@@ -20,6 +20,7 @@ def main(data_path='../dataset/split' , model_path='models'):
     result = loaded_model.score(X_test_scaled , y_test)
 
     print(result)
+    pickle.dump(result, open(f'{model_path}/score.sav', 'wb'))
     print("\nModel evaluation sucessfull")
 
 if __name__=='__main__':

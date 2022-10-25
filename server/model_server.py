@@ -11,9 +11,11 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 model_filename = 'models/model.sav'
 scaler_filename = 'models/scaler.sav'
 y_label_filename = 'dataset/split/y_label.csv'
+score_filename = 'models/score.sav'
 
 loaded_scaler = pickle.load(open(scaler_filename, 'rb')) 
 loaded_model = pickle.load(open(model_filename, 'rb'))
+loaded_score = pickle.load(open(score_filename, 'rb'))
 
 y_label=pd.read_csv(y_label_filename).to_dict()['0']
 
@@ -26,6 +28,10 @@ def home():
 def health_check():
     return '{"message" : "Api is working"}'
 
+
+@app.route('/api/v1/score', methods=['GET'])
+def score():
+    return json.dumps({"score":loaded_score})
 
 @app.route('/api/v1/predict', methods=['POST'])
 def predict():
